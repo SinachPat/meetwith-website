@@ -188,9 +188,9 @@ function ImageShowcase() {
 
 function HighlightedBox() {
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] mb-16 md:mb-24">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] mb-8 md:mb-12">
       <div className="relative max-w-[1159px] mx-auto w-full">
-        <div className="bg-[#1f2933] border border-[#fbc7b7] border-opacity-30 rounded-[10px] p-6 md:p-[25px]">
+        <div className="bg-[#1f2933] border border-[#3e4c59] rounded-[10px] p-6 md:p-[25px]">
           <p className="font-['DM_Sans'] font-medium text-white text-base leading-[1.5]">
             When your cohort, community, or portfolio spans Google, Outlook, any calendar and people who won't share their calendar at all — Meetwith lets you create a reusable group once and schedule every future meeting in under 90 seconds.
           </p>
@@ -202,7 +202,7 @@ function HighlightedBox() {
 
 function ProblemSection() {
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-16 md:py-24">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] pt-8 md:pt-12 pb-16 md:pb-24">
       <GridBackground />
       <div className="relative max-w-[1152px] mx-auto w-full">
         <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-4">
