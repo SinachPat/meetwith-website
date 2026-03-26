@@ -98,19 +98,19 @@ function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-[25px] bg-[rgba(19,26,32,0.1)] border-b border-[#323f4b]">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-13 py-4 md:py-5 flex items-center justify-between">
-          <div className="flex items-center gap-8 lg:gap-[140px]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-13 py-4 md:py-5 flex items-center">
+          <div className="flex-1">
             <LogoV />
-            <NavLinks />
           </div>
-          <div className="flex items-center gap-4">
+          <NavLinks />
+          <div className="flex-1 flex items-center justify-end gap-4">
             <button className="hidden md:flex bg-[#f46739] hover:bg-[#d93f0c] transition-colors gap-3 h-12 items-center justify-center px-4 py-2 rounded-lg shrink-0">
               <svg className="w-[18px] h-4" fill="none" viewBox="0 0 18 16">
                 <path d={svgPaths.p2f84a300} fill="#F5F7FA" />
               </svg>
               <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">Sign in</span>
             </button>
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(true)}
               className="md:hidden p-2 text-white"
             >
@@ -128,30 +128,59 @@ function Header() {
 
 function GridBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
-      {/* Vertical lines */}
-      {[...Array(8)].map((_, i) => (
-        <div
-          key={`v-${i}`}
-          className="absolute h-full w-px border-l border-[#141e30]"
-          style={{ left: `${(i + 1) * 12.5}%` }}
-        />
-      ))}
-      {/* Horizontal lines */}
-      {[...Array(8)].map((_, i) => (
-        <div
-          key={`h-${i}`}
-          className="absolute w-full h-px border-t border-[#141e30]"
-          style={{ top: `${(i + 1) * 12.5}%` }}
-        />
-      ))}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Radial fade mask — grid visible in center, fades at edges */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%)',
+        }}
+      />
+      {/* Dot intersections */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(244,103,57,0.25) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+          maskImage: 'radial-gradient(ellipse 60% 70% at 50% 0%, black 30%, transparent 90%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 60% 70% at 50% 0%, black 30%, transparent 90%)',
+        }}
+      />
+      {/* Orange radial glow from top-left (behind hero text) */}
+      <div
+        className="absolute"
+        style={{
+          top: '-10%',
+          left: '-5%',
+          width: '60%',
+          height: '70%',
+          background: 'radial-gradient(ellipse, rgba(244,103,57,0.12) 0%, transparent 70%)',
+        }}
+      />
+      {/* Subtle blue-teal accent glow top-right */}
+      <div
+        className="absolute"
+        style={{
+          top: '-5%',
+          right: '5%',
+          width: '40%',
+          height: '50%',
+          background: 'radial-gradient(ellipse, rgba(56,189,248,0.05) 0%, transparent 70%)',
+        }}
+      />
     </div>
   );
 }
 
 function HeroSection() {
   return (
-    <section id="home" className="relative w-full overflow-hidden pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-8 lg:px-[131px]">
+    <section id="home" className="relative w-full pt-32 md:pt-40 pb-0 px-4 md:px-8 lg:px-[131px]">
       <GridBackground />
       <div className="relative max-w-[1152px] mx-auto w-full">
         <h1 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-6">
@@ -161,7 +190,7 @@ function HeroSection() {
         <p className="font-['DM_Sans'] font-medium text-white text-base leading-[1.5] mb-6">
           No back and forth, no starting from scratch
         </p>
-        <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors flex gap-3 h-12 items-center justify-center px-4 py-2 rounded-lg mb-6">
+        <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors flex gap-3 h-12 items-center justify-center px-4 py-2 rounded-lg mb-3">
           <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">Create your group</span>
           <svg className="w-[10.667px] h-[9.333px] -scale-y-100" fill="none" viewBox="0 0 16 14">
             <path d={svgPaths.p317c9f00} fill="#F5F7FA" />
@@ -174,13 +203,36 @@ function HeroSection() {
 
 function ImageShowcase() {
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] mb-6 md:mb-10">
-      <div className="relative w-full max-w-[1152px] mx-auto">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] pt-2">
+      <div className="relative w-full max-w-[1152px] mx-auto" style={{ animation: 'float 6s ease-in-out infinite' }}>
         <img
           src={imgDiscoverTime1}
           alt="Meetwith Dashboard"
           className="w-full h-auto rounded-lg"
         />
+        {/* Animated availability pulse dots */}
+        <div className="absolute inset-0 pointer-events-none rounded-lg overflow-hidden">
+          {/* Scan line */}
+          <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#4ade80] to-transparent" style={{ animation: 'scan 4s linear infinite' }} />
+          {/* Pulsing availability indicators over calendar cells */}
+          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '62%', left: '55%', animation: 'ping 1.5s cubic-bezier(0,0,0.2,1) infinite' }}>
+            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping" />
+          </div>
+          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '68%', left: '62%', animation: 'ping 1.5s cubic-bezier(0,0,0.2,1) infinite 0.4s' }}>
+            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping [animation-delay:0.4s]" />
+          </div>
+          <div className="absolute w-3 h-3 rounded-full bg-[#facc15]" style={{ top: '58%', left: '72%' }}>
+            <div className="absolute inset-0 rounded-full bg-[#facc15] opacity-75 animate-ping [animation-delay:0.8s]" />
+          </div>
+          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '74%', left: '80%' }}>
+            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping [animation-delay:1.2s]" />
+          </div>
+          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '62%', left: '88%' }}>
+            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping [animation-delay:0.6s]" />
+          </div>
+          {/* Subtle glow on "Jump to Best Slot" button area */}
+          <div className="absolute animate-pulse" style={{ top: '78%', left: '34%', width: '14%', height: '7%', background: 'radial-gradient(ellipse, rgba(244,103,57,0.3) 0%, transparent 70%)' }} />
+        </div>
       </div>
     </section>
   );
@@ -188,7 +240,7 @@ function ImageShowcase() {
 
 function HighlightedBox() {
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] mb-8 md:mb-12">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] mt-8 md:mt-10">
       <div className="relative max-w-[1159px] mx-auto w-full">
         <div className="bg-[#1f2933] border border-[#3e4c59] rounded-[10px] p-6 md:p-[25px]">
           <p className="font-['DM_Sans'] font-medium text-white text-base leading-[1.5]">
@@ -202,7 +254,7 @@ function HighlightedBox() {
 
 function ProblemSection() {
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] pt-8 md:pt-12 pb-16 md:pb-24">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] pt-8 md:pt-12 pb-10 md:pb-16">
       <GridBackground />
       <div className="relative max-w-[1152px] mx-auto w-full">
         <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-4">
@@ -234,7 +286,7 @@ function ProblemSection() {
 
 function HowItWorksSection() {
   return (
-    <section id="features" className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-16 md:py-24">
+    <section id="features" className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-10 md:py-16">
       <div className="max-w-[1152px] mx-auto w-full">
         <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-8">
           How <span className="text-[#f46739]">Meetwith</span> Works
@@ -280,19 +332,14 @@ function HowItWorksSection() {
             </p>
           </div>
         </div>
-        <div className="relative w-full aspect-[1152/1100] max-w-[1152px] rounded-[15px] overflow-hidden group">
-          <img
-            src={imgDiscoverTime1}
-            alt="How Meetwith Works"
-            className="w-full h-full object-cover"
+        <div className="relative w-full aspect-video max-w-[1152px] rounded-[15px] overflow-hidden">
+          <iframe
+            src="https://www.youtube.com/embed/Fh4Chd-DxEs?list=PL_8jZMxhZaVWsIavN3-ZwJ3Gqc7gLiXto&start=27"
+            title="How Meetwith Works"
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
           />
-          <div className="absolute inset-0 backdrop-blur-[10px] bg-[rgba(31,41,51,0.2)] border border-[#616e7c] rounded-[15px]" />
-          <button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] h-[100px] hover:scale-110 transition-transform">
-            <svg className="w-full h-full" fill="none" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="41.6667" stroke="#D9D9D9" strokeWidth="1.5" fill="#D9D9D9" />
-              <path d={svgPaths.p12994c00} fill="#292D32" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
         </div>
         <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors flex gap-3 h-12 items-center justify-center px-4 py-2 rounded-lg mt-8">
           <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">Get started for FREE</span>
@@ -305,55 +352,6 @@ function HowItWorksSection() {
   );
 }
 
-function QuickPollSection() {
-  return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-16 md:py-24">
-      <div className="max-w-[1152px] mx-auto w-full">
-        <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-8">
-          Quickly Run a Poll
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[53px] mb-8">
-          <div className="flex flex-col gap-4">
-            <h3 className="font-['DM_Sans'] font-bold text-white text-2xl leading-[1.2]">
-              Make it simple
-            </h3>
-            <p className="font-['DM_Sans'] font-medium text-white text-base leading-[1.5]">
-              Send a single invite. Guests share their availability once. Meetwith automatically finds the best time to meet, no proposals, no follow-ups needed.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <h3 className="font-['DM_Sans'] font-bold text-white text-2xl leading-[1.2]">
-              Go straight from <span className="font-['DM_Sans'] font-semibold italic text-[#f46739]">need to meet</span> to <span className="font-['DM_Sans'] font-semibold italic text-[#f46739]">time to meet</span>
-            </h3>
-            <p className="font-['DM_Sans'] font-medium text-white text-base leading-[1.5]">
-              People join and share availability on their own terms, without exposing their full calendar. You instantly see which times work for the whole group. Scheduling stops being guesswork.
-            </p>
-          </div>
-        </div>
-        <div className="relative w-full aspect-[1152/1100] max-w-[1152px] rounded-[15px] overflow-hidden group">
-          <img
-            src={imgDiscoverTime1}
-            alt="Quick Poll Feature"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 backdrop-blur-[10px] bg-[rgba(31,41,51,0.2)] border border-[#616e7c] rounded-[15px]" />
-          <button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] h-[100px] hover:scale-110 transition-transform">
-            <svg className="w-full h-full" fill="none" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="41.6667" stroke="#D9D9D9" strokeWidth="1.5" fill="#D9D9D9" />
-              <path d={svgPaths.p12994c00} fill="#292D32" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-        <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors flex gap-3 h-12 items-center justify-center px-4 py-2 rounded-lg mt-8">
-          <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">Run a Poll</span>
-          <svg className="w-[10.667px] h-[9.333px] -scale-y-100" fill="none" viewBox="0 0 16 14">
-            <path d={svgPaths.p317c9f00} fill="#F5F7FA" />
-          </svg>
-        </button>
-      </div>
-    </section>
-  );
-}
 
 function WhoItsForSection() {
   const roles = [
@@ -396,7 +394,7 @@ function WhoItsForSection() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-16 md:py-24">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-10 md:py-16">
       <div className="max-w-[1152px] mx-auto w-full">
         <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-4">
           Who Meetwith is for
@@ -472,7 +470,7 @@ function WhatYouGetSection() {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-16 md:py-24">
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-10 md:py-16">
       <div className="max-w-[1152px] mx-auto w-full flex flex-col lg:flex-row gap-12 lg:gap-24">
         {/* Left: sticky heading */}
         <div className="lg:w-[360px] flex-shrink-0 lg:sticky lg:top-32 lg:self-start">
@@ -531,8 +529,8 @@ function PricingCard({
   isPro?: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-[25px]">
-      <div className="backdrop-blur-[12.5px] bg-[#131a20] border border-[#3e4c59] rounded-lg p-6">
+    <div className="flex flex-col gap-[25px] h-full">
+      <div className="backdrop-blur-[12.5px] bg-[#131a20] border border-[#3e4c59] rounded-lg p-6 flex-1">
         <div className="flex flex-col gap-2 mb-6">
           <h3 className="font-['DM_Sans'] font-bold text-[#f46739] text-xl">{title}</h3>
           <div className="flex items-end gap-2">
@@ -557,11 +555,52 @@ function PricingCard({
         <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors h-12 px-4 py-2 rounded-lg w-full md:w-[277px]">
           <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">{buttonText}</span>
         </button>
-        {isPro && (
-          <p className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">
-            14-Days free trial available
+      </div>
+    </div>
+  );
+}
+
+function EnterpriseCard() {
+  const features = [
+    "Dedicated onboarding and engineering support",
+    "Uptime guarantees",
+    "Team directory integrations",
+    "Priority Discord & Telegram account support",
+    "Dedicated database",
+  ];
+
+  return (
+    <div className="flex flex-col gap-[25px] h-full">
+      <div className="backdrop-blur-[12.5px] bg-[#131a20] border border-[#3e4c59] rounded-lg p-6 flex-1">
+        <div className="flex flex-col gap-2 mb-6">
+          <h3 className="font-['DM_Sans'] font-bold text-[#f46739] text-xl">Custom</h3>
+          <p className="font-['DM_Sans'] font-medium text-[#9aa5b1] text-sm leading-[1.5]">
+            Get a tailored experience for your team.
           </p>
-        )}
+        </div>
+        <p className="font-['DM_Sans'] font-medium text-[#e4e7eb] text-[12.8px] leading-[1.5] mb-4 italic">
+          PRO plan features, plus:
+        </p>
+        <div className="flex flex-col gap-2">
+          {features.map((feature, index) => (
+            <div key={index} className="flex gap-[10px] items-start py-1">
+              <svg className="w-4 h-4 flex-shrink-0 mt-1" fill="none" viewBox="0 0 16 16">
+                <path d={svgPaths.p3c8a0e00} fill="#F78C69" />
+              </svg>
+              <p className="font-['DM_Sans'] font-medium text-[#f5f7fa] text-[12.8px] leading-[1.5]">
+                {feature}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <a
+          href="https://meetwith.xyz/sinachpat"
+          className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors h-12 px-4 py-2 rounded-lg w-full flex items-center justify-center"
+        >
+          <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">Talk to sales</span>
+        </a>
       </div>
     </div>
   );
@@ -572,20 +611,20 @@ function PricingSection() {
     "Personal scheduling page",
     "1 Meeting type - FREE meetings",
     "Custom availability settings",
-    "Custom account handle",
-    "5 scheduling groups",
+    // "Custom account handle",
+    "Join unlimited number of groups",
     "Single integration with Google calendar, iCloud, Office 365 or WebDAV",
-    "Fixed booking link with wallet address",
-    "Limited QuickPolls (max. 2 active polls per time)",
+    // "Fixed booking link with wallet address",
+    "Limited QuickPolls (max. 1 active poll per month)",
     "Basic calendar sync - 1 calendar sync only",
     "Smart notifications - Email, Discord & Telegram add the cadence for each meeting type",
-    "Unlimited contact connection",
+    "Unlimited contact connection but no schedule allowed",
     "Email support"
   ];
 
   const proFeatures = [
     "Everything in Free plus (+):",
-    "Unlimited scheduling groups",
+    "Unlimited scheduling groups - create, join, schedule groups without limits",
     "Payments & Invoicing",
     "Unlimited integrations (Google calendar, iCloud, Office 365 and WebDAV)",
     "Unlimited QuickPolls",
@@ -599,22 +638,23 @@ function PricingSection() {
         <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-10">
           Plans that meet your needs
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 items-stretch">
           <PricingCard
             title="Free"
             price="$0"
             period="/ forever"
             features={freeFeatures}
-            buttonText="Try for free"
+            buttonText="Get started"
           />
           <PricingCard
             title="Pro"
             price="$8"
             period="/ month"
             features={proFeatures}
-            buttonText="Go Pro"
+            buttonText="Try it for Free"
             isPro
           />
+          <EnterpriseCard />
         </div>
         <p className="font-['DM_Sans'] font-medium text-[#e4e7eb] text-xl md:text-2xl leading-[1.2] text-center max-w-[862px] mx-auto">
           Start for free, go Pro. You can try our Pro features using the 14-days free trial.
@@ -765,7 +805,6 @@ export default function App() {
         <HighlightedBox />
         <ProblemSection />
         <HowItWorksSection />
-        <QuickPollSection />
         <WhoItsForSection />
         <WhatYouGetSection />
         <PricingSection />
