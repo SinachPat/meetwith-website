@@ -1,5 +1,5 @@
 import svgPaths from "../imports/svg-l54ppa69cx";
-import imgDiscoverTime1 from "@/assets/21e4652ad86d7e55cd447ed0342f97f09a0258eb.png";
+import imgDiscoverTime1 from "@/assets/Discovertime.png";
 import imgGeminiGeneratedImageJzer4Rjzer4Rjzer1 from "@/assets/8deb71f26c0ddbcdb1ce5946962cefe6adb93e5c.png";
 import { useState } from "react";
 import {
