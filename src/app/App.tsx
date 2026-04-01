@@ -205,7 +205,7 @@ function HeroSection() {
 function ImageShowcase() {
   return (
     <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] pt-2">
-      <div className="relative w-full max-w-[1152px] mx-auto rounded-lg overflow-hidden bg-[#1f2933] border border-[#3e4c59]">
+      <div className="relative w-full max-w-[1152px] mx-auto rounded-lg overflow-hidden border border-[#3e4c59]">
         <video
           src={groupDemoVideo}
           autoPlay
