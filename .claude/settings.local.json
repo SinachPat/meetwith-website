@@ -12,7 +12,9 @@
       "Bash(curl -v --max-time 5 http://127.0.0.1:5175/)",
       "Bash(code \"/Users/USER/Desktop/MWW/Meetwith/marketing content materials/Meetwith landing page\")",
       "Bash(open -a \"Visual Studio Code\" \"/Users/USER/Desktop/MWW/Meetwith/marketing content materials/Meetwith landing page\")",
-      "Bash(python3 -c \"from PIL import Image; img = Image.open\\(''/Users/USER/Desktop/MWW/Meetwith/marketing content materials/Meetwith landing page/src/assets/21e4652ad86d7e55cd447ed0342f97f09a0258eb.png''\\); print\\(img.size\\)\")"
+      "Bash(python3 -c \"from PIL import Image; img = Image.open\\(''/Users/USER/Desktop/MWW/Meetwith/marketing content materials/Meetwith landing page/src/assets/21e4652ad86d7e55cd447ed0342f97f09a0258eb.png''\\); print\\(img.size\\)\")",
+      "Bash(mdfind -name *.png -onlyin ~/Desktop -onlyin ~/Downloads)",
+      "Bash(curl -s http://localhost:5175/og-image.png -o /dev/null -w \"%{http_code} | size: %{size_download} bytes\")"
     ]
   }
 }
