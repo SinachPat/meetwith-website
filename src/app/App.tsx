@@ -1,5 +1,6 @@
 import svgPaths from "../imports/svg-l54ppa69cx";
 import imgDiscoverTime1 from "@/assets/Discovertime.png";
+import groupDemoVideo from "@/assets/group-demo.mp4";
 import imgGeminiGeneratedImageJzer4Rjzer4Rjzer1 from "@/assets/8deb71f26c0ddbcdb1ce5946962cefe6adb93e5c.png";
 import { useState } from "react";
 import {
@@ -204,35 +205,15 @@ function HeroSection() {
 function ImageShowcase() {
   return (
     <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] pt-2">
-      <div className="relative w-full max-w-[1152px] mx-auto" style={{ animation: 'float 6s ease-in-out infinite' }}>
-        <img
-          src={imgDiscoverTime1}
-          alt="Meetwith Dashboard"
+      <div className="relative w-full max-w-[1152px] mx-auto rounded-lg overflow-hidden bg-[#1f2933] border border-[#3e4c59]">
+        <video
+          src={groupDemoVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-auto rounded-lg"
         />
-        {/* Animated availability pulse dots */}
-        <div className="absolute inset-0 pointer-events-none rounded-lg overflow-hidden">
-          {/* Scan line */}
-          <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#4ade80] to-transparent" style={{ animation: 'scan 4s linear infinite' }} />
-          {/* Pulsing availability indicators over calendar cells */}
-          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '62%', left: '55%', animation: 'ping 1.5s cubic-bezier(0,0,0.2,1) infinite' }}>
-            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping" />
-          </div>
-          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '68%', left: '62%', animation: 'ping 1.5s cubic-bezier(0,0,0.2,1) infinite 0.4s' }}>
-            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping [animation-delay:0.4s]" />
-          </div>
-          <div className="absolute w-3 h-3 rounded-full bg-[#facc15]" style={{ top: '58%', left: '72%' }}>
-            <div className="absolute inset-0 rounded-full bg-[#facc15] opacity-75 animate-ping [animation-delay:0.8s]" />
-          </div>
-          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '74%', left: '80%' }}>
-            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping [animation-delay:1.2s]" />
-          </div>
-          <div className="absolute w-3 h-3 rounded-full bg-[#4ade80]" style={{ top: '62%', left: '88%' }}>
-            <div className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping [animation-delay:0.6s]" />
-          </div>
-          {/* Subtle glow on "Jump to Best Slot" button area */}
-          <div className="absolute animate-pulse" style={{ top: '78%', left: '34%', width: '14%', height: '7%', background: 'radial-gradient(ellipse, rgba(244,103,57,0.3) 0%, transparent 70%)' }} />
-        </div>
       </div>
     </section>
   );
