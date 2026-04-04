@@ -15,6 +15,7 @@ import {
   Zap,
   ShieldCheck,
   LayoutDashboard,
+  Quote,
 } from "lucide-react";
 
 function LogoV() {
@@ -494,6 +495,77 @@ function WhatYouGetSection() {
   );
 }
 
+function TestimonialsSection() {
+  const testimonials = [
+    {
+      name: "Roso",
+      quote:
+        "I've used MeetWith almost every day for the past 3 years. It helped me and my team quickly schedule group calls and made it easier to go from thinking about the people I want to meet with to having a meeting booked with them. Since using it, scheduling meetings became effortless.",
+    },
+    {
+      name: "Susana",
+      quote:
+        "I was managing double-booked meetings and cross-coordination issues, and I was at risk of losing clients and projects. I needed something that could allow me to handle group meetings, to get 1:1s, and get all my emails and calendars in one place. Meetwith was the only answer, since all competitors failed and are just too pricey.",
+    },
+    {
+      name: "Yineisy",
+      quote:
+        "I was looking for a way to diversify the way my clients could pay for their consults, and Meetwith fit perfectly. Now my clients can choose to pay in crypto or credit card, and I can customize different time lengths for the type of consults. My work is easier now.",
+    },
+    {
+      name: "Stella",
+      quote:
+        "Meetwith is amazing, one call and one demo, and I switched it out against Calendly, cause it is just better and more versatile! It's based on decentralized technologies and has more competitive pricing.",
+    },
+    {
+      name: "Daniel",
+      quote:
+        "Meetwith has saved me countless hours of admin. When you want to move fast and work across teams, tools like Calendly, cal.com, and lettucemeet dont cut it. Meetwith increases our productivity.",
+    },
+  ];
+
+  return (
+    <section className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-10 md:py-16">
+      <GridBackground />
+      <div className="relative max-w-[1152px] mx-auto w-full">
+        <div className="max-w-[720px] mb-10">
+          <h2 className="font-['DM_Sans'] font-bold text-white text-3xl md:text-4xl lg:text-[48.83px] leading-[1.2] mb-4">
+            What customers say about <span className="text-[#f46739]">Meetwith</span>
+          </h2>
+          <p className="font-['DM_Sans'] font-medium text-[#9aa5b1] text-base leading-[1.5]">
+            Teams using Meetwith talk about speed, flexibility, and finally having one place to coordinate recurring meetings that other tools make painful.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          {testimonials.map(({ name, quote }) => (
+            <article
+              key={name}
+              className="relative h-full rounded-xl border border-[#2d3c4a] bg-[linear-gradient(180deg,rgba(31,41,51,0.92)_0%,rgba(19,26,32,0.98)_100%)] p-6 md:p-7"
+            >
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <div>
+                  <h3 className="font-['DM_Sans'] font-bold text-white text-xl leading-[1.3]">{name}</h3>
+                  <p className="font-['DM_Sans'] font-medium text-[#f46739] text-sm leading-[1.4]">
+                    Meetwith customer
+                  </p>
+                </div>
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(244,103,57,0.25)] bg-[rgba(244,103,57,0.12)]">
+                  <Quote className="h-5 w-5 text-[#f46739]" strokeWidth={1.75} />
+                </div>
+              </div>
+
+              <p className="font-['DM_Sans'] font-medium text-[#e4e7eb] text-base leading-[1.7]">
+                "{quote}"
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PricingCard({ 
   title, 
   price, 
@@ -533,7 +605,7 @@ function PricingCard({
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors h-12 px-4 py-2 rounded-lg w-full md:w-[277px]">
+        <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors h-12 px-4 py-2 rounded-lg w-full">
           <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">{buttonText}</span>
         </button>
       </div>
@@ -788,6 +860,7 @@ export default function App() {
         <HowItWorksSection />
         <WhoItsForSection />
         <WhatYouGetSection />
+        <TestimonialsSection />
         <PricingSection />
         <FAQSection />
       </main>
