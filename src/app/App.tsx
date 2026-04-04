@@ -3,6 +3,7 @@ import imgDiscoverTime1 from "@/assets/Discovertime.png";
 import groupDemoVideo from "@/assets/group-demo.mp4";
 import imgGeminiGeneratedImageJzer4Rjzer4Rjzer1 from "@/assets/8deb71f26c0ddbcdb1ce5946962cefe6adb93e5c.png";
 import { useState } from "react";
+import { Link } from "react-router";
 import {
   Users,
   GraduationCap,
@@ -17,6 +18,7 @@ import {
   LayoutDashboard,
   Quote,
 } from "lucide-react";
+import { landingFaqs } from "./faqs";
 
 function LogoV() {
   return (
@@ -46,9 +48,9 @@ function NavLinks() {
       <a href="#plans" className="px-4 py-2 font-['DM_Sans'] font-medium text-[#e4e7eb] text-base hover:text-[#f35826] transition-colors">
         Plans
       </a>
-      <a href="#faq" className="px-4 py-2 font-['DM_Sans'] font-medium text-[#e4e7eb] text-base hover:text-[#f35826] transition-colors">
+      <Link to="/faqs" className="px-4 py-2 font-['DM_Sans'] font-medium text-[#e4e7eb] text-base hover:text-[#f35826] transition-colors">
         FAQ
-      </a>
+      </Link>
     </nav>
   );
 }
@@ -77,9 +79,9 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           <a href="#plans" onClick={onClose} className="px-4 py-3 font-['DM_Sans'] font-medium text-[#e4e7eb] text-lg hover:text-[#f35826] transition-colors">
             Plans
           </a>
-          <a href="#faq" onClick={onClose} className="px-4 py-3 font-['DM_Sans'] font-medium text-[#e4e7eb] text-lg hover:text-[#f35826] transition-colors">
+          <Link to="/faqs" onClick={onClose} className="px-4 py-3 font-['DM_Sans'] font-medium text-[#e4e7eb] text-lg hover:text-[#f35826] transition-colors">
             FAQ
-          </a>
+          </Link>
         </nav>
         <div className="p-4 border-t border-[#323f4b]">
           <button className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors flex gap-3 h-12 items-center justify-center px-4 py-2 rounded-lg w-full">
@@ -720,29 +722,6 @@ function PricingSection() {
 function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      question: "What is Meetwith and how is it different from other scheduling tools?",
-      answer: "Meetwith is a decentralized group meeting scheduler built for teams, DAOs, and communities. It's designed to make coordinating multi-person meetings simple, flexible, and collaborative. While we do have 1:1 we give you a full 360 experience with group features and payment options that integrates Web3, Stripe and invoicing."
-    },
-    {
-      question: "How does scheduling group meetings work?",
-      answer: "You can either: Find the best available time across all members using our discovery tool, or Set a fixed time (recurrent or one-off) and notify the group."
-    },
-    {
-      question: "What payment methods does Meetwith accept?",
-      answer: "Meetwith supports crypto payments through Arbitrum and Celo networks, traditional payments via Stripe, and manual invoicing. You choose what works best for you and your clients."
-    },
-    {
-      question: "Do invitees need a Meetwith account to book or join a meeting?",
-      answer: "No — participants can schedule or join meetings with just a link. Creating an account is optional."
-    },
-    {
-      question: "Can I offer different pricing for different session types?",
-      answer: "Absolutely! Create multiple session types with different durations, prices, and descriptions. For example: 30-min quick calls at $50, 90-min strategy sessions at $200."
-    }
-  ];
-
   return (
     <section id="faq" className="relative w-full overflow-hidden px-4 md:px-8 lg:px-[131px] py-16 md:py-24">
       <GridBackground />
@@ -751,7 +730,7 @@ function FAQSection() {
           Frequently Asked Questions
         </h2>
         <div className="flex flex-col gap-4">
-          {faqs.map((faq, index) => (
+          {landingFaqs.map((faq, index) => (
             <div
               key={index}
               className="backdrop-blur-[12.5px] bg-[#131a20] border border-[#3e4c59] rounded-lg overflow-hidden"
@@ -784,6 +763,14 @@ function FAQSection() {
             </div>
           ))}
         </div>
+        <div className="mt-8 flex justify-start">
+          <Link
+            to="/faqs"
+            className="bg-[#f46739] hover:bg-[#d93f0c] transition-colors inline-flex h-12 items-center justify-center rounded-lg px-5 py-2"
+          >
+            <span className="font-['DM_Sans'] font-bold text-[#f5f7fa] text-base">See all FAQs</span>
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -804,9 +791,9 @@ function Footer() {
             <a href="#plans" className="px-4 py-2 font-['DM_Sans'] font-medium text-white text-base hover:text-[#f46739] transition-colors">
               Plans
             </a>
-            <a href="#faq" className="px-4 py-2 font-['DM_Sans'] font-medium text-white text-base hover:text-[#f46739] transition-colors">
+            <Link to="/faqs" className="px-4 py-2 font-['DM_Sans'] font-medium text-white text-base hover:text-[#f46739] transition-colors">
               FAQ
-            </a>
+            </Link>
             <a href="#changelog" className="px-4 py-2 font-['DM_Sans'] font-medium text-white text-base hover:text-[#f46739] transition-colors">
               Changelog
             </a>
